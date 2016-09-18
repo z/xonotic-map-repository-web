@@ -1,5 +1,7 @@
 $(document).ready(function () {
-
+  
+  var API_URL = 'http://localhost:8010';
+  
   // Config
   var preloadCount = 2500;
   var useCache = true;
@@ -42,7 +44,7 @@ $(document).ready(function () {
    */
 
   var table = $('#table-maplist').DataTable({
-    data: {},
+    ajax: API_URL + '/maps',
     lengthMenu: [25, 50, 100, 250],
     pageLength: 25,
     order: [[15, 'desc']],
@@ -406,15 +408,6 @@ $(document).ready(function () {
           return (str) ? 'yes' : 'no';
         },
         visible: false
-      },
-      {
-        // date
-        targets: 15,
-        render: function (data, type, full, meta) {
-          var d = new Date(0);
-          d.setUTCSeconds(data);
-          return d.toISOString().slice(0, 10);
-        }
       }
     ],
     initComplete: function (settings, json) {
@@ -460,6 +453,10 @@ $(document).ready(function () {
       });
 
       $('body').trigger('scroll');
+
+      $('#apology').fadeOut();
+      $('.first-load-backdrop').remove();
+
     }
   });
 
@@ -536,82 +533,6 @@ $(document).ready(function () {
     });
 
   });
-
-  var curTime = new Date().getTime();
-  var userAgent = navigator.userAgent.toLowerCase();
-
-  // if no cache exists or browser doesn't support it
-  if ( !useCache || store.isFake() || !store.get('expiration') || curTime > store.get('expiration') ) {
-
-    var count = 0;
-    var preloadMaps = [];
-    var workerFetch = new Worker('static/js/worker-fetch.js');
-
-    workerFetch.addEventListener('message', function(e) {
-
-      if (e.data.hasOwnProperty('data') && useCache) {
-
-        var mapData = e.data.data;
-        mapData.splice(0, preloadCount);
-
-        table.rows.add(mapData).draw();
-
-        var string = JSON.stringify(mapData);
-        var compressed = LZString.compressToUTF16(string);
-        store.set('expiration', new Date().getTime() + cacheExpiration);
-        store.set('tableData', compressed);
-        store.set('preloadMaps', preloadMaps);
-
-        $('#apology').fadeOut();
-        $('.first-load-backdrop').remove();
-
-      } else {
-
-        var mapObjectData = e.data;
-        
-        // Preload?
-        if (count < preloadCount) {
-          preloadMaps.push(mapObjectData);
-        } else if (preloadMaps.length == preloadCount) {
-          table.rows.add(preloadMaps).draw();
-        }
-
-        count++;
-      }
-
-    }, false);
-
-    workerFetch.postMessage('../../resources/data/maps.json');
-
-  } else {
-
-    var preloadMaps = store.get('preloadMaps');
-    
-    table.rows.add(preloadMaps).draw();
-
-    var workerDecompress = cw({
-      decompress: function(data) {
-        importScripts('/static/vendor/lz-string/lz-string.min.js');
-        importScripts('/static/vendor/store2/store2.min.js');
-        var decompressed = JSON.parse(LZString.decompressFromUTF16(data));
-        return decompressed;
-      }
-    });
-
-    var response = workerDecompress.decompress(store.get('tableData'));
-
-    response.then(function(data) {
-
-      table.rows.add(data).draw();
-
-      $('#apology').fadeOut();
-      $('.first-load-backdrop').remove();
-
-      workerDecompress.close();
-
-    });
-
-  }
 
   /*
    * Charts
