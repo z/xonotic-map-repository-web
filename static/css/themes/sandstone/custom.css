@@ -1,0 +1,6 @@
+table.dataTable {
+    margin-top: 19px !important;
+}
+table.dataTable.fixedHeader-floating {
+    margin-top: 12px !important;
+}

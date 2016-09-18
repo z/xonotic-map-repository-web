@@ -1,0 +1,10 @@
+*.swp
+*.swo
+*.idea
+*__pycache__
+venv
+activate
+resources/*
+!resources/images/
+!resources/mapshots/
+resources/mapshots/maps/*
