@@ -6,3 +6,7 @@ python -m SimpleHTTPServer 8080
 ```
 
 Goto `http://127.0.0.1:8000`
+
+## License
+
+Licensed under MIT
