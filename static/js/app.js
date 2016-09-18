@@ -1,11 +1,6 @@
 $(document).ready(function () {
   
   var API_URL = 'http://localhost:8010';
-  
-  // Config
-  var preloadCount = 2500;
-  var useCache = true;
-  var cacheExpiration = 30000000;
 
   // Define Themes
   var themes = {
@@ -30,21 +25,22 @@ $(document).ready(function () {
 
   var userTheme = $.cookie('theme');
   //var userTheme = ($.cookie('theme')) ? $.cookie('theme') : 'default';
-  
-  // Jokes while you wait
-  $.get('./resources/data/jokes.json', function(data) {
-    var jokes = data.jokes;
-    var random = jokes[Math.floor(Math.random()*jokes.length)].joke;
-    $('#joke p').text(JSON.stringify(random));
-  });
 
-  
   /*
    * Tables
    */
 
   var table = $('#table-maplist').DataTable({
-    ajax: API_URL + '/maps',
+    serverSide: true,
+    ajax: API_URL + '/maps/',
+        // dataFilter: function(data) {
+        //     var json = jQuery.parseJSON( data );
+        //     json.recordsTotal = json.total;
+        //     json.recordsFiltered = json.total;
+        //     json.data = json.list;
+        //
+        //     return JSON.stringify( json ); // return JSON string
+        // }
     lengthMenu: [25, 50, 100, 250],
     pageLength: 25,
     order: [[15, 'desc']],
@@ -278,7 +274,7 @@ $(document).ready(function () {
               }
             });
           }
-          return str;          
+          return str;
         }
       },
       { // gametypes
@@ -487,19 +483,19 @@ $(document).ready(function () {
     }
   });
 
-  // Setup - add a text input to filtesearch footers
+  // Setup add a text input to filtesearch footers
   $('#table-maplist tfoot th.filtersearch').each(function () {
     var title = $(this).text();
     $(this).html('<input type="text" placeholder="filter ' + title + '" class="form-control input-sm" />');
   });
 
-  // Setup - add a dropdown to dropdownsearch footers
+  // Setup add a dropdown to dropdownsearch footers
   $('#table-maplist tfoot th.dropdownsearch').each(function () {
     var title = $(this).text();
     $(this).html('<select class="form-control input-sm"><option value="">all (' + title + ' &amp; no ' + title + ')</option><option value="yes">' + title + '</option><option value="no">no ' + title + '</option></select>');
   });
 
-  // Setup - add a dropdown to dropdownsearch footers
+  // Setup add a dropdown to dropdownsearch footers
   $('#table-maplist tfoot th.dropdownsearch-mapshot').each(function () {
     var title = $(this).text();
     $(this).html('<select class="form-control input-sm"><option value="">all (' + title + ' &amp; no ' + title + ')</option><option value="maps/">' + title + '</option><option value="no_mapshot.png">no ' + title + '</option></select>');
@@ -658,7 +654,7 @@ $(document).ready(function () {
 
   });
 
-  $('[href=#maplist]').click(function() {
+  $('[href=\\#maplist]').click(function() {
     setTimeout(function() {
       $('#nav-table-controls').show();
     }, 10);
