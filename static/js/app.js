@@ -169,6 +169,7 @@ $(document).ready(function () {
               bsps = '<span data-toggle="tooltip" title="' + bsps + '">' + bsps.substr(0, 38) + '...</span>';
             }
           }
+          bsps += '<br><button type="button" class="btn-xs btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">View Map</button>';
           return bsps;
         }
       },
@@ -182,10 +183,9 @@ $(document).ready(function () {
           var string = "";
 
           data.forEach(function (value, index, array) {
-            string += '<a class="btn mapshot-link" data-img="./resources/mapshots/' + value + '" href="./resources/mapshots/' + value + '" target="_blank">'
+            string += '<div class="btn mapshot-link" data-img="./resources/mapshots/' + value + '" data-toggle="modal" data-target=".bs-example-modal-lg">'
               + '<img src="./resources/mapshots/' + value + '" class="mapshot css-animated" />'
-              + '<span>' + value + '</span>'
-              + '</a>';
+              + '<span>' + value + '</span>';
           });
 
           return string;
