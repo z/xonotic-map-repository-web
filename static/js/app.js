@@ -531,25 +531,47 @@ $(document).ready(function () {
     var map_id = $(e.relatedTarget).data('map-id');
     $.get(API_URL + '/map/' + map_id, function(response) {
       var map_package = response.data[0];
+      var index = 0;
+      var $bspViewer = $('#bsp-viewer');
+      var $bspInidcators = $('#bsp-indicators');
+      var $bspTemplate = $('#bsp-template');
+
+      $bspViewer.empty();
+      $bspInidcators.empty();
+
+      $('#view-map-package .panel-footer').hide();
+
       $.each(map_package.bsp, function(bsp_name, this_bsp) {
 
-        $('.mp_bsp').text(bsp_name);
-        $('.mp_title').text(this_bsp['title']);
-        $('.mp_description').text(this_bsp['description']);
+        var $newBsp = $bspTemplate.clone();
+        var $newIndicator = $('<li data-target="#bsp-carousel" data-slide-to="' + index + '"></li>');
 
-        $('.mp_gametypes').text(this_bsp['gametypes']);
-        $('.mp_entities').text(this_bsp['entities']);
+        if (index == 0) {
+          $newBsp.addClass('active');
+          $newIndicator.addClass('active');
+        }
 
-        $('.mp_author').text(this_bsp['author']);
-        $('.mp_filesize').text(this_bsp['filesize']);
-        $('.mp_date').text(map_package['date']);
+        $newBsp.appendTo($bspViewer).removeClass('hidden').attr('id', 'item-' + index);
+        $newIndicator.appendTo($bspInidcators);
 
-        $('.mp_shasum').text(map_package['shasum']);
 
-        $('.mp_license').text(!!this_bsp['license']);
-        $('.mp_map').text(!!this_bsp['map']);
-        $('.mp_waypoints').text(!!this_bsp['waypoints']);
-        $('.mp_radar').text(!!this_bsp['radar']);
+        $('#item-' + index + ' .mp_bsp').text(bsp_name);
+        $('#item-' + index + ' .mp_title').text(this_bsp['title']);
+        $('#item-' + index + ' .mp_description').text(this_bsp['description']);
+
+        $('#item-' + index + ' .mp_gametypes').text(this_bsp['gametypes']);
+        $('#item-' + index + ' .mp_entities').text(this_bsp['entities']);
+
+        $('#item-' + index + ' .mp_author').text(this_bsp['author']);
+        $('#item-' + index + ' .mp_filesize').text(this_bsp['filesize']);
+        $('#item-' + index + ' .mp_date').text(map_package['date']);
+
+        $('#item-' + index + ' .mp_shasum').text(map_package['shasum']);
+
+        $('#item-' + index + ' .mp_license').text(!!this_bsp['license']);
+        $('#item-' + index + ' .mp_map').text(!!this_bsp['map']);
+        $('#item-' + index + ' .mp_waypoints').text(!!this_bsp['waypoints']);
+        $('#item-' + index + ' .mp_radar').text(!!this_bsp['radar']);
 
         var mapshot = this_bsp['mapshot'];
 
@@ -560,7 +582,15 @@ $(document).ready(function () {
         }
         mapshot = '/resources/mapshots/' + mapshot;
         $('.mp_mapshot').attr('src', mapshot);
+        
+        index++;
+        console.log(index);
       });
+
+      if (index > 1) {
+        $('#view-map-package .panel-footer').show();
+      }
+
     });
   });
 

@@ -271,14 +271,11 @@
 
           <div class="row">
 
-            <div id="bsp-carousel" class="carousel slide" data-ride="carousel">
 
-              <!-- Wrapper for slides -->
-              <div class="carousel-inner" role="listbox">
-                <div class="item active">
+            <div class="item hidden" id="bsp-template">
 
 
-          <div class="row">
+                  <div class="row">
 
             <div class="col-sm-8 col-md-6">
               <div class="thumbnail">
@@ -350,162 +347,13 @@
 
 
                 </div>
-                <!--<div class="item">-->
 
+            <div id="bsp-carousel" class="carousel slide" data-ride="carousel">
 
-          <!--<div class="row">-->
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner" role="listbox" id="bsp-viewer"></div>
 
-            <!--<div class="col-sm-8 col-md-6">-->
-              <!--<div class="thumbnail">-->
-                <!--<img src="./resources/mapshots/maps/100miles.jpg" alt="100miles">-->
-                <!--<div class="caption">-->
-                  <!--<h3>100miles</h3>-->
-                  <!--<h5>100 miles</h5>-->
-                  <!--<p>This is where a map description goes if it has one</p>-->
-                  <!--<a type="button" href="./path/to/download" class="btn btn-success btn-lg" aria-label="Download Map">-->
-                    <!--<i class="fa fa-download"></i> Download Map-->
-                  <!--</a>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="col-sm-4 col-md-6">-->
-
-              <!--<table class="table">-->
-                <!--<caption>Map Details</caption>-->
-                <!--<tr>-->
-                  <!--<th colspan="2">Gametypes</th>-->
-                <!--</tr>-->
-                <!--<tr>-->
-<!--<td colspan="2"><i class="icon icon-gametype_dm" data-toggle="tooltip" title="dm"><b>dm</b></i> <i class="icon icon-gametype_ctf" data-toggle="tooltip" title="ctf"><b>ctf</b></i> <i class="icon icon-gametype_tdm" data-toggle="tooltip" title="tdm"><b>tdm</b></i> <i class="icon icon-gametype_dom" data-toggle="tooltip" title="dom"><b>dom</b></i> <i class="icon icon-gametype_ca" data-toggle="tooltip" title="ca"><b>ca</b></i> <i class="icon icon-gametype_ft" data-toggle="tooltip" title="ft"><b>ft</b></i> <i class="icon icon-gametype_lms" data-toggle="tooltip" title="lms"><b>lms</b></i> <i class="icon icon-gametype_ka" data-toggle="tooltip" title="ka"><b>ka</b></i> </td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                  <!--<th colspan="2">Entities</th>-->
-                <!--</tr>-->
-                <!--<tr>-->
-<!--<td colspan="2"><i class="icon icon-item_invincible" data-toggle="tooltip" title="1 item_invincible"><b>item_invincible</b></i> <i class="icon icon-item_health_medium" data-toggle="tooltip" title="4 item_health_medium"><b>item_health_medium</b></i> <i class="icon icon-item_armor_large" data-toggle="tooltip" title="4 item_armor_large"><b>item_armor_large</b></i> <i class="icon icon-weapon_crylink" data-toggle="tooltip" title="3 weapon_crylink"><b>weapon_crylink</b></i> <i class="icon icon-item_health_small" data-toggle="tooltip" title="38 item_health_small"><b>item_health_small</b></i> <i class="icon icon-world" data-toggle="tooltip" title="1 world"><b>world</b></i> <i class="icon icon-item_armor_small" data-toggle="tooltip" title="98 item_armor_small"><b>item_armor_small</b></i> <i class="icon icon-weapon_electro" data-toggle="tooltip" title="3 weapon_electro"><b>weapon_electro</b></i> <i class="icon icon-info_player_team2" data-toggle="tooltip" title="5 info_player_team2"><b>info_player_team2</b></i> <i class="icon icon-weapon_hagar" data-toggle="tooltip" title="3 weapon_hagar"><b>weapon_hagar</b></i> <i class="icon icon-item_flag_team1" data-toggle="tooltip" title="1 item_flag_team1"><b>item_flag_team1</b></i> <i class="icon icon-weapon_devastator" data-toggle="tooltip" title="4 weapon_devastator"><b>weapon_devastator</b></i> <i class="icon icon-info_player_team1" data-toggle="tooltip" title="5 info_player_team1"><b>info_player_team1</b></i> <i class="icon icon-item_health_mega" data-toggle="tooltip" title="2 item_health_mega"><b>item_health_mega</b></i> <i class="icon icon-item_strength" data-toggle="tooltip" title="1 item_strength"><b>item_strength</b></i> <i class="icon icon-weapon_grenadelauncher" data-toggle="tooltip" title="7 weapon_grenadelauncher"><b>weapon_grenadelauncher</b></i> <i class="icon icon-item_rockets" data-toggle="tooltip" title="22 item_rockets"><b>item_rockets</b></i> <i class="icon icon-weapon_vortex" data-toggle="tooltip" title="5 weapon_vortex"><b>weapon_vortex</b></i> <i class="icon icon-item_flag_team2" data-toggle="tooltip" title="1 item_flag_team2"><b>item_flag_team2</b></i> <i class="icon icon-item_cells" data-toggle="tooltip" title="18 item_cells"><b>item_cells</b></i> <i class="icon icon-weapon_machinegun" data-toggle="tooltip" title="10 weapon_machinegun"><b>weapon_machinegun</b></i> </td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                  <!--<th>Author</th>-->
-                  <!--<td>master</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                  <!--<th>Filesize</th>-->
-                  <!--<td>3 MB</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                  <!--<th>Date of bsp</th>-->
-                  <!--<td>10/23/16</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                  <!--<th>shasum</th>-->
-                  <!--<td>5a0062e9d1231dfd53f8fb50f9c0b051676e63dd</td>-->
-                <!--</tr>-->
-              <!--</table>-->
-
-              <!--<table class="table">-->
-                <!--<caption>FOSS Friendly?</caption>-->
-                <!--<tr>-->
-                  <!--<th>License?</th>-->
-                  <!--<th>Waypoints?</th>-->
-                  <!--<th>Radar?</th>-->
-                  <!--<th>Map File?</th>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                  <!--<td>No</td>-->
-                  <!--<td>Yes</td>-->
-                  <!--<td>Yes</td>-->
-                  <!--<td>No</td>-->
-                <!--</tr>-->
-              <!--</table>-->
-
-            <!--</div>&lt;!&ndash; .col &ndash;&gt;-->
-
-          <!--</div>&lt;!&ndash; .row &ndash;&gt;-->
-
-
-                <!--</div>-->
-                <!--<div class="item">-->
-
-
-          <!--<div class="row">-->
-
-            <!--<div class="col-sm-8 col-md-6">-->
-              <!--<div class="thumbnail">-->
-                <!--<img src="./resources/mapshots/maps/100miles.jpg" alt="100miles">-->
-                <!--<div class="caption">-->
-                  <!--<h3>100miles</h3>-->
-                  <!--<h5>100 miles</h5>-->
-                  <!--<p>This is where a map description goes if it has one</p>-->
-                  <!--<a type="button" href="./path/to/download" class="btn btn-success btn-lg" aria-label="Download Map">-->
-                    <!--<i class="fa fa-download"></i> Download Map-->
-                  <!--</a>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="col-sm-4 col-md-6">-->
-
-              <!--<table class="table">-->
-                <!--<caption>Map Details</caption>-->
-                <!--<tr>-->
-                  <!--<th colspan="2">Gametypes</th>-->
-                <!--</tr>-->
-                <!--<tr>-->
-<!--<td colspan="2"><i class="icon icon-gametype_dm" data-toggle="tooltip" title="dm"><b>dm</b></i> <i class="icon icon-gametype_ctf" data-toggle="tooltip" title="ctf"><b>ctf</b></i> <i class="icon icon-gametype_tdm" data-toggle="tooltip" title="tdm"><b>tdm</b></i> <i class="icon icon-gametype_dom" data-toggle="tooltip" title="dom"><b>dom</b></i> <i class="icon icon-gametype_ca" data-toggle="tooltip" title="ca"><b>ca</b></i> <i class="icon icon-gametype_ft" data-toggle="tooltip" title="ft"><b>ft</b></i> <i class="icon icon-gametype_lms" data-toggle="tooltip" title="lms"><b>lms</b></i> <i class="icon icon-gametype_ka" data-toggle="tooltip" title="ka"><b>ka</b></i> </td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                  <!--<th colspan="2">Entities</th>-->
-                <!--</tr>-->
-                <!--<tr>-->
-<!--<td colspan="2"><i class="icon icon-item_invincible" data-toggle="tooltip" title="1 item_invincible"><b>item_invincible</b></i> <i class="icon icon-item_health_medium" data-toggle="tooltip" title="4 item_health_medium"><b>item_health_medium</b></i> <i class="icon icon-item_armor_large" data-toggle="tooltip" title="4 item_armor_large"><b>item_armor_large</b></i> <i class="icon icon-weapon_crylink" data-toggle="tooltip" title="3 weapon_crylink"><b>weapon_crylink</b></i> <i class="icon icon-item_health_small" data-toggle="tooltip" title="38 item_health_small"><b>item_health_small</b></i> <i class="icon icon-world" data-toggle="tooltip" title="1 world"><b>world</b></i> <i class="icon icon-item_armor_small" data-toggle="tooltip" title="98 item_armor_small"><b>item_armor_small</b></i> <i class="icon icon-weapon_electro" data-toggle="tooltip" title="3 weapon_electro"><b>weapon_electro</b></i> <i class="icon icon-info_player_team2" data-toggle="tooltip" title="5 info_player_team2"><b>info_player_team2</b></i> <i class="icon icon-weapon_hagar" data-toggle="tooltip" title="3 weapon_hagar"><b>weapon_hagar</b></i> <i class="icon icon-item_flag_team1" data-toggle="tooltip" title="1 item_flag_team1"><b>item_flag_team1</b></i> <i class="icon icon-weapon_devastator" data-toggle="tooltip" title="4 weapon_devastator"><b>weapon_devastator</b></i> <i class="icon icon-info_player_team1" data-toggle="tooltip" title="5 info_player_team1"><b>info_player_team1</b></i> <i class="icon icon-item_health_mega" data-toggle="tooltip" title="2 item_health_mega"><b>item_health_mega</b></i> <i class="icon icon-item_strength" data-toggle="tooltip" title="1 item_strength"><b>item_strength</b></i> <i class="icon icon-weapon_grenadelauncher" data-toggle="tooltip" title="7 weapon_grenadelauncher"><b>weapon_grenadelauncher</b></i> <i class="icon icon-item_rockets" data-toggle="tooltip" title="22 item_rockets"><b>item_rockets</b></i> <i class="icon icon-weapon_vortex" data-toggle="tooltip" title="5 weapon_vortex"><b>weapon_vortex</b></i> <i class="icon icon-item_flag_team2" data-toggle="tooltip" title="1 item_flag_team2"><b>item_flag_team2</b></i> <i class="icon icon-item_cells" data-toggle="tooltip" title="18 item_cells"><b>item_cells</b></i> <i class="icon icon-weapon_machinegun" data-toggle="tooltip" title="10 weapon_machinegun"><b>weapon_machinegun</b></i> </td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                  <!--<th>Author</th>-->
-                  <!--<td>master</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                  <!--<th>Filesize</th>-->
-                  <!--<td>3 MB</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                  <!--<th>Date of bsp</th>-->
-                  <!--<td>10/23/16</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                  <!--<th>shasum</th>-->
-                  <!--<td>5a0062e9d1231dfd53f8fb50f9c0b051676e63dd</td>-->
-                <!--</tr>-->
-              <!--</table>-->
-
-              <!--<table class="table">-->
-                <!--<caption>FOSS Friendly?</caption>-->
-                <!--<tr>-->
-                  <!--<th>License?</th>-->
-                  <!--<th>Waypoints?</th>-->
-                  <!--<th>Radar?</th>-->
-                  <!--<th>Map File?</th>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                  <!--<td>No</td>-->
-                  <!--<td>Yes</td>-->
-                  <!--<td>Yes</td>-->
-                  <!--<td>No</td>-->
-                <!--</tr>-->
-              <!--</table>-->
-
-            <!--</div>&lt;!&ndash; .col &ndash;&gt;-->
-
-          <!--</div>&lt;!&ndash; .row &ndash;&gt;-->
-
-                <!--</div>-->
-              </div>
-
-              <ol class="carousel-indicators">
-                <li data-target="#bsp-carousel" data-slide-to="0" class="active"></li>
-                <li data-target="#bsp-carousel" data-slide-to="1"></li>
-                <li data-target="#bsp-carousel" data-slide-to="2"></li>
-              </ol>
+              <ol class="carousel-indicators" id="bsp-indicators"></ol>
 
             </div><!-- .carousel -->
 
