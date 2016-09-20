@@ -161,6 +161,39 @@ td em {
   transition: transform 0.3s ease-out;
 }
 
+#bsp-carousel {
+    min-height: 30em;
+}
+
+/*.carousel-control.left {*/
+    /*margin-left: -136px;*/
+    /*background-image: linear-gradient(to left,rgba(0,0,0,.5) 0,rgba(0,0,0,.0001) 100%);*/
+/*}*/
+/*.carousel-control.right {*/
+    /*margin-right: -136px;*/
+    /*background-image: linear-gradient(to left,rgba(0,0,0,.0001) 0,rgba(0,0,0,.5) 100%);*/
+/*}*/
+
+.vertical-align {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+.carousel-indicators {
+    bottom: -65px
+}
+.carousel-indicators li {
+    border-color: #999;
+    background-color: #ddd;
+}
+.carousel-indicators li.active {
+    background-color: #888;
+}
+
+#table-maplist tbody td {
+vertical-align: middle;
+}
+
 .box1 {
     animation: tetromino1 1.5s ease-out infinite;
 }

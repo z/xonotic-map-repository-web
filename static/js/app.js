@@ -144,7 +144,8 @@ $(document).ready(function () {
               bsps = '<span data-toggle="tooltip" title="' + bsps + '">' + bsps.substr(0, 38) + '...</span>';
             }
           }
-          bsps += '<br><button type="button" class="btn-xs btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">View Map</button>';
+          bsps += '<br><br><a type="button" class="btn btn-xs btn-default" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-eye"></i> View</a>';
+          bsps += ' <a href="#" class="btn btn-xs btn-primary"><i class="fa fa-download"> Download</a>';
           return bsps;
         }
       },
@@ -331,6 +332,7 @@ $(document).ready(function () {
       $('#apology').fadeOut();
       $('.first-load-backdrop').remove();
 
+      $('.carousel').carousel();
     }
   });
 
