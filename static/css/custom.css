@@ -190,10 +190,6 @@ td em {
     background-color: #888;
 }
 
-#table-maplist tbody td {
-vertical-align: middle;
-}
-
 .box1 {
     animation: tetromino1 1.5s ease-out infinite;
 }
