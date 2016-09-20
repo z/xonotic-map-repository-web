@@ -255,7 +255,7 @@ $(document).ready(function () {
               bsps = '<span data-toggle="tooltip" title="' + bsps + '">' + bsps.substr(0, 38) + '...</span>';
             }
           }
-          bsps += '<br><br><a type="button" class="btn btn-xs btn-default" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-eye"></i> View</a>';
+          bsps += '<br><br><a type="button" class="btn btn-xs btn-default" data-toggle="modal" data-target="#view-map-package" data-map-id="' + full.id + '"><i class="fa fa-eye"></i> View</a>';
           bsps += ' <a href="#" class="btn btn-xs btn-primary"><i class="fa fa-download"> Download</a>';
           return bsps;
         }
@@ -270,7 +270,7 @@ $(document).ready(function () {
           var string = "";
           
           data.forEach(function (value, index, array) {
-            string += '<div class="btn mapshot-link" data-img="./resources/mapshots/' + value + '" data-toggle="modal" data-target=".bs-example-modal-lg">'
+            string += '<div class="btn mapshot-link" data-img="./resources/mapshots/' + value + '" data-toggle="modal" data-target="#view-map-package" data-map-id="' + full.id + '">'
               + '  <img src="./resources/mapshots/' + value + '" class="mapshot css-animated" />'
               + '  <span>' + value + '</span>'
               + '</div>';
@@ -522,76 +522,52 @@ $(document).ready(function () {
 
   });
 
+
   /*
-   * Charts
+   * Modals
    */
 
-  var chartsDrawn = false;
-  var allCharts = [];
+  $('#view-map-package').on('show.bs.modal', function (e) {
+    var map_id = $(e.relatedTarget).data('map-id');
+    $.get(API_URL + '/map/' + map_id, function(response) {
+      var map_package = response.data[0];
+      $.each(map_package.bsp, function(bsp_name, this_bsp) {
 
-  function drawCharts(data) {
-    $('#charts').show();
+        $('.mp_bsp').text(bsp_name);
+        $('.mp_title').text(this_bsp['title']);
+        $('.mp_description').text(this_bsp['description']);
 
-    // Pie
-    allCharts[0] = c3.generate(data.mapinfos);
-    allCharts[1] = c3.generate(data.mapshots);
-    allCharts[2] = c3.generate(data.maps);
-    allCharts[3] = c3.generate(data.radars);
-    allCharts[4] = c3.generate(data.waypoints);
-    allCharts[5] = c3.generate(data.licenses);
+        $('.mp_gametypes').text(this_bsp['gametypes']);
+        $('.mp_entities').text(this_bsp['entities']);
 
-    // Bar Chart
-    var filesizes = {
-      tooltip: {
-        format: {
-          title: function (x) {
-            return;
-          },
-          name: function (name, ratio, id, index) {
-            return "map count";
-          },
-          value: function (value, ratio, id, index) {
-            return value;
-          }
+        $('.mp_author').text(this_bsp['author']);
+        $('.mp_filesize').text(this_bsp['filesize']);
+        $('.mp_date').text(map_package['date']);
+
+        $('.mp_shasum').text(map_package['shasum']);
+
+        $('.mp_license').text(!!this_bsp['license']);
+        $('.mp_map').text(!!this_bsp['map']);
+        $('.mp_waypoints').text(!!this_bsp['waypoints']);
+        $('.mp_radar').text(!!this_bsp['radar']);
+
+        var mapshot = this_bsp['mapshot'];
+
+        if (mapshot) {
+          mapshot = mapshot.replace('.tga', '.jpg');
+        } else {
+          mapshot = 'no_mapshot.png';
         }
-      }
-    };
+        mapshot = '/resources/mapshots/' + mapshot;
+        $('.mp_mapshot').attr('src', mapshot);
+      });
+    });
+  });
 
-    $.extend(filesizes, data.filesizes);
-    allCharts[6] = c3.generate(filesizes);
 
-    // Line
-    allCharts[7] = c3.generate(data.mapsbyyear);
-
-    // Donut
-    allCharts[8] = c3.generate(data.gametypes);
-    allCharts[9] = c3.generate(data.shacount);
-
-    // Stacked Area
-    allCharts[10] = c3.generate(data.filesbyyear);
-
-    // Donut
-    allCharts[11] = c3.generate(data.entityappearance);
-
-    // Donut
-    allCharts[12] = c3.generate(data.entitycount);
-
-    $('#loading-charts').hide();
-  }
-
-  function hideCharts() {
-    // allCharts.forEach(function(value, index, array) {
-    //   value.hide();
-    // });
-  }
-
-  function showCharts() {
-    $('#loading-charts').hide();
-    $('#charts').show();
-    // allCharts.forEach(function(value, index, array) {
-    //  value.show();
-    // });
-  }
+  /*
+   * Tabs
+   */
 
   // Need to hide datatables when changing tabs for fixedHeader
   var visible = true;
@@ -606,23 +582,7 @@ $(document).ready(function () {
 
       case "#maplist":
 
-        visible = false;
-
-        break;
-
       case "#statistics":
-
-        $('#charts').hide();
-        $('#loading-charts').show();
-
-        if (!chartsDrawn) {
-          $.get('./resources/data/charts.json', function (data) {
-            drawCharts(data);
-            chartsDrawn = true;
-          });
-        } else {
-          showCharts();
-        }
 
       case "#about":
 
@@ -633,9 +593,7 @@ $(document).ready(function () {
     }
 
     $('#nav-table-controls').hide();
-
     table.fixedHeader.adjust();
-    hideCharts();
 
     // decide whether to show the table or not
     if (visible) { // hide table
