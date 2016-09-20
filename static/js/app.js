@@ -161,7 +161,8 @@ $(document).ready(function () {
           data.forEach(function (value, index, array) {
             string += '<div class="btn mapshot-link" data-img="./resources/mapshots/' + value + '" data-toggle="modal" data-target=".bs-example-modal-lg">'
               + '<img src="./resources/mapshots/' + value + '" class="mapshot css-animated" />'
-              + '<span>' + value + '</span>';
+              + '<span>' + value + '</span>'
+              + '</div>';
           });
 
           return string;
