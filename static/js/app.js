@@ -117,6 +117,7 @@ $.fn.dataTable.Api.register( 'clearPipeline()', function () {
 $(document).ready(function () {
   
   var API_URL = 'http://localhost:8010';
+  var DOWNLOAD_URL = 'http://dl.xonotic.co';
 
   // Define Themes
   var themes = {
@@ -554,8 +555,9 @@ $(document).ready(function () {
         $newBsp.appendTo($bspViewer).removeClass('hidden').attr('id', 'item-' + index);
         $newIndicator.appendTo($bspInidcators);
 
-
+        $('.mp_pk3').text(map_package['pk3']);
         $('#item-' + index + ' .mp_bsp').text(bsp_name);
+        $('#item-' + index + ' .mp_url').attr('href', DOWNLOAD_URL + '/' + map_package['pk3']);
         $('#item-' + index + ' .mp_title').text(this_bsp['title']);
         $('#item-' + index + ' .mp_description').text(this_bsp['description']);
 
@@ -582,7 +584,24 @@ $(document).ready(function () {
         }
         mapshot = '/resources/mapshots/' + mapshot;
         $('.mp_mapshot').attr('src', mapshot);
-        
+
+        var gametypes = this_bsp['gametypes'];
+        var entities = this_bsp['entities'];
+        var gametypes_html = "";
+        var entities_html = "";
+
+        $.each(gametypes, function (k, v) {
+          gametypes_html += '<i class="icon icon-gametype_' + v + '" data-toggle="tooltip" title="' + v + '"><b>' + v + '</b></i> ';
+        });
+
+        $.each(entities, function (k, v) {
+          console.log(entities);
+          entities_html += '<i class="icon icon-' + k + '" data-toggle="tooltip" title="' + v + ' ' + k + '"><b>' + k + '</b></i> ';
+        });
+
+        $('#item-' + index + ' .mp_gametypes').html(gametypes_html);
+        $('#item-' + index + ' .mp_entities').html(entities_html);
+
         index++;
         console.log(index);
       });
