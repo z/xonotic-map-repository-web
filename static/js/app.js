@@ -115,9 +115,6 @@ $.fn.dataTable.Api.register( 'clearPipeline()', function () {
 } );
 
 $(document).ready(function () {
-  
-  var API_URL = 'http://localhost:8010';
-  var DOWNLOAD_URL = 'http://dl.xonotic.co';
 
   // Define Themes
   var themes = {
@@ -150,7 +147,7 @@ $(document).ready(function () {
   var table = $('#table-maplist').DataTable({
     serverSide: true,
     ajax: $.fn.dataTable.pipeline({
-        url: API_URL + '/maps/',
+        url: GLOBAL.API_URL + '/maps/',
         pages: 5 // number of pages to cache
     }),
     lengthMenu: [25, 50, 100, 250],
@@ -530,7 +527,7 @@ $(document).ready(function () {
 
   $('#view-map-package').on('show.bs.modal', function (e) {
     var map_id = $(e.relatedTarget).data('map-id');
-    $.get(API_URL + '/map/' + map_id, function(response) {
+    $.get(GLOBAL.API_URL + '/map/' + map_id, function(response) {
       var map_package = response.data[0];
       var index = 0;
       var $bspViewer = $('#bsp-viewer');
@@ -557,7 +554,7 @@ $(document).ready(function () {
 
         $('.mp_pk3').text(map_package['pk3']);
         $('#item-' + index + ' .mp_bsp').text(bsp_name);
-        $('#item-' + index + ' .mp_url').attr('href', DOWNLOAD_URL + '/' + map_package['pk3']);
+        $('#item-' + index + ' .mp_url').attr('href', GLOBAL.DOWNLOAD_URL + '/' + map_package['pk3']);
         $('#item-' + index + ' .mp_title').text(this_bsp['title']);
         $('#item-' + index + ' .mp_description').text(this_bsp['description']);
 

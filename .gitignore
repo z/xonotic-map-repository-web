@@ -8,3 +8,4 @@ resources/*
 !resources/images/
 !resources/mapshots/
 resources/mapshots/maps/*
+config.js
