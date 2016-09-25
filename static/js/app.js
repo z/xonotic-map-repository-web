@@ -592,7 +592,6 @@ $(document).ready(function () {
         });
 
         $.each(entities, function (k, v) {
-          console.log(entities);
           entities_html += '<i class="icon icon-' + k + '" data-toggle="tooltip" title="' + v + ' ' + k + '"><b>' + k + '</b></i> ';
         });
 
@@ -600,7 +599,6 @@ $(document).ready(function () {
         $('#item-' + index + ' .mp_entities').html(entities_html);
 
         index++;
-        console.log(index);
       });
 
       if (index > 1) {
